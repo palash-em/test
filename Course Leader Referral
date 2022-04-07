@@ -1,4 +1,0 @@
-select lead_email,ic_id,ic_created_date,lead_created_date,is_lead,is_app,is_paid_app,ic_program_id,program_name,school_name,source,sub_channel,booking, from reporting.monster where lead_email in (select distinct friend_email from (
-select a.advocate_email,a.friend_email,ic_created_date,lead_created_date,is_lead,is_app,is_paid_app,b.ic_program_id,b.program_name,school_name,b.source,b.sub_channel,booking,b.num_ics,b.programs_requested from heroku_public.referrals_captured_emails a inner join reporting.monster b
-on lower(a.friend_email)=lower(b.lead_email) and a.program_sfid=b.ic_program_id
-where sub_channel='course_leader_referral' and cast(ic_created_date as date)>=cast('2021-12-15' as date))) and sub_channel <> 'course_leader_referral'
